@@ -13,6 +13,8 @@
 		52843ED22BDDF91800340813 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 52843ED12BDDF91800340813 /* Base */; };
 		52843EDA2BDDFF4300340813 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52843ED92BDDFF4300340813 /* NotesViewController.swift */; };
 		52843EDC2BDDFFDB00340813 /* CreateNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52843EDB2BDDFFDB00340813 /* CreateNoteViewController.swift */; };
+		52A7FD422BDF888300838264 /* TestNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A7FD412BDF888300838264 /* TestNotesViewController.xib */; };
+		52A7FD432BDF888300838264 /* TestNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7FD402BDF888300838264 /* TestNotesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		52843ED32BDDF91800340813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52843ED92BDDFF4300340813 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		52843EDB2BDDFFDB00340813 /* CreateNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteViewController.swift; sourceTree = "<group>"; };
+		52A7FD402BDF888300838264 /* TestNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotesViewController.swift; sourceTree = "<group>"; };
+		52A7FD412BDF888300838264 /* TestNotesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestNotesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				52843ED32BDDF91800340813 /* Info.plist */,
 				52843ED92BDDFF4300340813 /* NotesViewController.swift */,
 				52843EDB2BDDFFDB00340813 /* CreateNoteViewController.swift */,
+				52A7FD402BDF888300838264 /* TestNotesViewController.swift */,
+				52A7FD412BDF888300838264 /* TestNotesViewController.xib */,
 			);
 			path = NoteList;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A7FD422BDF888300838264 /* TestNotesViewController.xib in Resources */,
 				52843ECF2BDDF91800340813 /* Assets.xcassets in Resources */,
 				52843ED22BDDF91800340813 /* Base in Resources */,
 				52843ECD2BDDF91700340813 /* Base in Resources */,
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A7FD432BDF888300838264 /* TestNotesViewController.swift in Sources */,
 				52843EDA2BDDFF4300340813 /* NotesViewController.swift in Sources */,
 				52843EDC2BDDFFDB00340813 /* CreateNoteViewController.swift in Sources */,
 				52843EC62BDDF91700340813 /* AppDelegate.swift in Sources */,

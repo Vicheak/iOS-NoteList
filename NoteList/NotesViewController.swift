@@ -8,8 +8,8 @@
 import UIKit
 
 struct Note {
-    let title: String?
-    let detail: String?
+    let title: String
+    let detail: String
 }
 
 class NotesViewController: UIViewController {
@@ -24,22 +24,28 @@ class NotesViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        //add the bar button item to bar button group
         self.navigationItem.rightBarButtonItems?.append(self.editButtonItem)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(saveData), name: NSNotification.Name.saveData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveDataNotification), name: NSNotification.Name.saveData, object: nil)
     }
     
-    @objc func saveData(notification: Notification) {
+    @objc func saveDataNotification(notification: Notification) {
         guard let note = notification.object as? Note else { return }
-        
-        notes.append(note)
-//        tableView.reloadData()
-        tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .automatic)
+     
+        updateDataSource(note: note)
     }
 
     @IBAction func addButtonClick(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let createNoteViewController = storyboard.instantiateViewController(withIdentifier: "CreateNoteViewController")
+        let createNoteViewController: CreateNoteViewController = storyboard.instantiateViewController(withIdentifier: "CreateNoteViewController") as! CreateNoteViewController
+        
+        createNoteViewController.onSave = { [weak self] note in
+            guard let self = self else { return }
+            self.updateDataSource(note: note)
+        }
+        
+        createNoteViewController.delegate = self
         
         navigationController?.pushViewController(createNoteViewController, animated: true)
     }
@@ -85,6 +91,20 @@ extension NotesViewController: UITableViewDataSource, UITableViewDelegate {
         return true
     }
 
+}
+
+extension NotesViewController {
+    func updateDataSource(note: Note) {
+        notes.append(note)
+//        tableView.reloadData()
+        tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .automatic)
+    }
+}
+
+extension NotesViewController: CreateNoteDelegate {
+    func saveData(note: Note) {
+        updateDataSource(note: note)
+    }
 }
 
 extension NSNotification.Name {
