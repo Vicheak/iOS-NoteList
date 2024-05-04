@@ -9,6 +9,8 @@ import UIKit
 
 protocol CreateNoteDelegate {
     func saveData(note: Note)
+//    func updateData(old: Note, note: Note)
+    func updateData(note: Note)
 }
 
 class CreateNoteViewController: UIViewController {
@@ -22,9 +24,14 @@ class CreateNoteViewController: UIViewController {
     
     var delegate: CreateNoteDelegate?
     
+    var note: Note?
+    
+    var keyboardUtil: KeyboardUtil!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationItem.title = note == nil ? "Create Note" : "Edit Note"
         navigationItem.title = "Create Note"
         
         titleTextField.delegate = self
@@ -32,9 +39,12 @@ class CreateNoteViewController: UIViewController {
         
         //configure basic UI
         //...
-            
-        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        //configure keyboard util
+        keyboardUtil = KeyboardUtil(view: self.view, bottomConstraint: self.bottomConstraint)
+        
+        titleTextField.text = note?.title
+        detailTextView.text = note?.detail
     }
     
     @objc func showKeyboard(notification: Notification) {
@@ -66,14 +76,24 @@ class CreateNoteViewController: UIViewController {
                 
 //                NotificationCenter.default.post(name: NSNotification.Name.saveData, object: Note(title: title, detail: detail))
                 
-                let note: Note = Note(title: title, detail: detail)
+//                let note: Note = Note(title: title, detail: detail)
                 
                 //call a closure for a callback signal
 //                onSave?(note)
                 
                 //use a delegate to make a callback when invoking the method from the class
                 //which owns the delegate property
-                delegate?.saveData(note: note)
+                
+                if let oldNote = self.note {
+                    //user -> edit existing note
+//                    delegate?.updateData(old: oldNote, note: note)
+                    let note: Note = Note(id: oldNote.id, title: title, detail: detail)
+                    delegate?.updateData(note: note)
+                } else {
+                    //user -> create new note
+                    let note: Note = Note(title: title, detail: detail)
+                    delegate?.saveData(note: note)
+                }
                 
                 navigationController?.popViewController(animated: true)
             })

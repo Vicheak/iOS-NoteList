@@ -17,7 +17,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = TestNotesViewController(nibName: "TestNotesViewController", bundle: nil)
-//        window?.makeKeyAndVisible()w
+//        window?.makeKeyAndVisible()
+        
+        //global style
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = .orange
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            
+            let barAppearance = UITabBarAppearance()
+            barAppearance.configureWithDefaultBackground()
+            barAppearance.backgroundColor = .green
+            
+            let barAppearance1 = UITabBarAppearance()
+            barAppearance1.configureWithDefaultBackground()
+            barAppearance1.backgroundColor = .orange
+            
+            UITabBar.appearance().standardAppearance = barAppearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = barAppearance1
+            }
+        }
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = 0
+        }
         
         return true
     }
