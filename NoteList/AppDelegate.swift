@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.rootViewController = TestNotesViewController(nibName: "TestNotesViewController", bundle: nil)
-//        window?.makeKeyAndVisible()
+//        window?.makeKeyAndVisible()w
         
         return true
     }

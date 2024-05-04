@@ -27,6 +27,9 @@ class CreateNoteViewController: UIViewController {
         
         navigationItem.title = "Create Note"
         
+        titleTextField.delegate = self
+        detailTextView.delegate = self
+        
         //configure basic UI
         //...
             
@@ -112,6 +115,21 @@ extension CreateNoteViewController {
         }
    
         return isValidated
+    }
+    
+}
+
+extension CreateNoteViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            detailTextView.becomeFirstResponder()
+        } else {
+            //textField.resignFirstResponder()
+            detailTextView.resignFirstResponder()
+        }
+        
+        return true
     }
     
 }
